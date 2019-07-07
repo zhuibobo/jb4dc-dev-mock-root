@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/jb4dc-dev-mock-root.iml" filepath="$PROJECT_DIR$/.idea/jb4dc-dev-mock-root.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jb4dc-dev-mock-service/jb4dc-dev-mock-service.iml" filepath="$PROJECT_DIR$/jb4dc-dev-mock-service/jb4dc-dev-mock-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jb4dc-dev-mock-web-server/jb4dc-dev-mock-web-server.iml" filepath="$PROJECT_DIR$/jb4dc-dev-mock-web-server/jb4dc-dev-mock-web-server.iml" />
+    </modules>
+  </component>
+</project>
