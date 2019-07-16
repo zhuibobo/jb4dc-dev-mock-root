@@ -44,7 +44,7 @@ public class LiQuiBaseBeansConfig {
 
         } catch (Exception e) {
             e.printStackTrace();
-            throw new JBuild4DCGenerallyException("执行数据库更新失败！");
+            throw new JBuild4DCGenerallyException(JBuild4DCGenerallyException.EXCEPTION_DEVMOCK_CODE,"执行数据库更新失败！");
         } finally {
             if (liquibase != null) {
                 Database database = liquibase.getDatabase();

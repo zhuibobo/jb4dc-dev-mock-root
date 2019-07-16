@@ -1,21 +1,50 @@
-server:
-  servlet:
-    session:
-      timeout: 30
-    context-path: /DevMock
-  port: 9100
 spring:
+  application:
+    name: JB4DC-DEV-MOCK-WEB-SERVER
+    inetutils:
+      #客户端的IP
+      preferred-networks: 192.168.3.153
+  liquibase:
+    enabled: false
   thymeleaf:
     prefix: classpath:/static/HTML/
     suffix: .html
     enabled: true
-  liquibase:
-    enabled: false
+
+server:
+  port: 9102
+  servlet:
+    session:
+      timeout: 7200
+    context-path: /DevMock
+
+eureka:
+  client:
+    serviceUrl:
+      #服务端的地址
+      defaultZone: http://127.0.0.1:9092/eureka/
+  instance:
+    prefer-ip-address: true
+    instanceId: ${spring.cloud.inetutils.preferred-networks}:${server.port}
 
 logging:
   level:
     com:
       jb4dc:
+        devmock:
+          dao: TRACE
+
+
+jbuild4d:
+  sso:
+    server:
+      view-path: http://localhost:9091/jb4d
+      rest:
         base:
-          dbaccess:
-            dao: TRACE
+          path: /PlatFormRest
+    login:
+      path: /PlatForm/LoginSSOView.do
+    logout:
+      path: /logout
+    excluded:
+      paths:

@@ -4,7 +4,7 @@ import com.github.pagehelper.PageInterceptor;
 import com.jb4dc.base.dbaccess.dynamic.GeneralMapper;
 import com.jb4dc.base.dbaccess.exenum.EnableTypeEnum;
 import com.jb4dc.base.dbaccess.exenum.UniversalIntEnumHandler;
-import com.jb4dc.base.dbaccess.general.DBProp;
+import com.jb4dc.core.base.ymls.DBYaml;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -32,12 +32,12 @@ public class MybatisBeansConfig {
     /*@Bean(destroyMethod="close")*/
     @Bean
     public ComboPooledDataSource dataSourceBean() throws PropertyVetoException {
-        String driverName= DBProp.getDriverName();
+        String driverName= DBYaml.getDriverName();
         ComboPooledDataSource comboPooledDataSource=new ComboPooledDataSource();
         comboPooledDataSource.setDriverClass(driverName);
-        comboPooledDataSource.setJdbcUrl(DBProp.getValue("Url"));
-        comboPooledDataSource.setUser(DBProp.getValue("User"));
-        comboPooledDataSource.setPassword(DBProp.getValue("Password"));
+        comboPooledDataSource.setJdbcUrl(DBYaml.getValue("Url"));
+        comboPooledDataSource.setUser(DBYaml.getValue("User"));
+        comboPooledDataSource.setPassword(DBYaml.getValue("Password"));
         //ComboPooledDataSource validationquery
         comboPooledDataSource.setPreferredTestQuery("SELECT 1");
         comboPooledDataSource.setAutomaticTestTable("TestConn");
@@ -75,7 +75,7 @@ public class MybatisBeansConfig {
     public SqlSessionFactoryBean sqlSessionFactoryBean(PageInterceptor pageInterceptor) throws PropertyVetoException, IOException {
         SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
         sessionFactory.setDataSource(dataSourceBean());
-        sessionFactory.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath*:mybatismappers/*/*.xml"));
+        sessionFactory.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath*:mybatismappers/**/*.xml"));
         TypeHandler[] typeHandlers = {new UniversalIntEnumHandler(EnableTypeEnum.class)};
         sessionFactory.setTypeHandlers(typeHandlers);
         Interceptor[] interceptors={pageInterceptor};
