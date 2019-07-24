@@ -22,22 +22,22 @@ import javax.servlet.ServletResponse;
 @Configuration
 public class SsoFilter {
 
-    @Value("${jbuild4d.sso.server.view-path}")
-    private String ssoServer;
+    @Value("${jb4dc.sso.server.address}")
+    private String ssoServerAddress;
 
-    @Value("${jbuild4d.sso.login.path}")
+    @Value("${jb4dc.sso.login.path}")
     private String ssoLoginPath;
 
-    @Value("${jbuild4d.sso.logout.path}")
+    @Value("${jb4dc.sso.logout.path}")
     private String ssoLogoutPath;
 
-    @Value("${jbuild4d.sso.excluded.paths}")
+    @Value("${jb4dc.sso.excluded.paths}")
     private String ssoExcludedPaths;
 
-    @Value("${jbuild4d.sso.server.rest.base.path}")
+    @Value("${jb4dc.sso.server.rest.base.path}")
     private String restBasePath;
 
-    @Bean
+    //@Bean
     public FilterRegistrationBean xxlSsoFilterRegistration() {
         // xxl-sso, filter init
         FilterRegistrationBean registration = new FilterRegistrationBean();
@@ -53,7 +53,7 @@ public class SsoFilter {
             }
         });
         registration.setFilter(filter);
-        registration.addInitParameter(SsoWebFilter.KEY_SSO_SERVER, ssoServer);
+        registration.addInitParameter(SsoWebFilter.KEY_SSO_SERVER_ADDRESS, ssoServerAddress);
         registration.addInitParameter(SsoWebFilter.KEY_SSO_LOGIN_PATH,ssoLoginPath);
         registration.addInitParameter(SsoWebFilter.KEY_SSO_LOGOUT_PATH, ssoLogoutPath);
         registration.addInitParameter(SsoWebFilter.KEY_SSO_EXCLUDED_PATHS, ssoExcludedPaths);

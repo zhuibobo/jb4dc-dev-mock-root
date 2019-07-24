@@ -27,24 +27,36 @@ eureka:
     prefer-ip-address: true
     instanceId: ${spring.cloud.inetutils.preferred-networks}:${server.port}
 
+
 logging:
   level:
     com:
       jb4dc:
         devmock:
           dao: TRACE
+        sso:
+          client: debug
 
-
-jbuild4d:
+jb4dc:
   sso:
     server:
-      view-path: http://localhost:9091/jb4d
+      name: JB4DC-SSO-WEB-SERVER
+      address: http://localhost:9101
+      context-path: /SSOSystem
       rest:
         base:
-          path: /PlatFormRest
+          path: /Rest
     login:
-      path: /PlatForm/LoginSSOView.do
+      path: /Controller/LoginSSOView
     logout:
       path: /logout
     excluded:
       paths:
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 1000
+        readTimeout: 12000
+        retryer: feign.Retryer.Default
