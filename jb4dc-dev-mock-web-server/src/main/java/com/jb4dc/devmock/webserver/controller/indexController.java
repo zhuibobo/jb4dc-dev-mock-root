@@ -26,7 +26,7 @@ public class indexController {
 
     @RequestMapping("/hello")
     public String index(String name, HttpServletRequest request) throws JsonProcessingException {
-        FeignRequestInterceptor.SessionToken="hellow 123";
+        //FeignRequestInterceptor.SessionToken="hellow 123";
         request.getSession().getId();
         JBuild4DCResponseVo zhuibobo = sessionRemote.loginForRest("xxxxxxxx","zhuibobo", "1");
         return JsonUtility.toObjectString(zhuibobo);
