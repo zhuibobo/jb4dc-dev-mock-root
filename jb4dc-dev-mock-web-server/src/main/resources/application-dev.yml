@@ -43,15 +43,10 @@ jb4dc:
       name: JB4DC-SSO-WEB-SERVER
       address: http://localhost:9101
       context-path: /SSOSystem
-      rest:
-        base:
-          path: /Rest
-    login:
-      path: /Controller/LoginSSOView
-    logout:
-      path: /logout
-    excluded:
-      paths:
+      view:
+        login: /Controller/LoginSSOView
+        logout: /logout
+      excluded:
 
 feign:
   client:

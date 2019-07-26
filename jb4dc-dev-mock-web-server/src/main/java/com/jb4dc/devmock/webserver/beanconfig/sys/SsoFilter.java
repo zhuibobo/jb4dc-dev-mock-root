@@ -1,6 +1,9 @@
 package com.jb4dc.devmock.webserver.beanconfig.sys;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.jb4dc.base.tools.JsonUtility;
 import com.jb4dc.core.base.session.JB4DCSession;
+import com.jb4dc.sso.client.conf.Conf;
 import com.jb4dc.sso.client.extend.ICheckSessionSuccess;
 import com.jb4dc.sso.client.filter.SsoWebFilter;
 import org.springframework.beans.factory.annotation.Value;
@@ -23,21 +26,21 @@ import javax.servlet.ServletResponse;
 public class SsoFilter {
 
     @Value("${jb4dc.sso.server.address}")
-    private String ssoServerAddress;
+    private String JB4DC_SSO_SERVER_ADDRESS;
 
-    @Value("${jb4dc.sso.login.path}")
-    private String ssoLoginPath;
+    @Value("${jb4dc.sso.server.context-path}")
+    private String JB4DC_SSO_SERVER_CONTEXT_PATH;
 
-    @Value("${jb4dc.sso.logout.path}")
-    private String ssoLogoutPath;
+    @Value("${jb4dc.sso.server.view.login}")
+    private String JB4DC_SSO_SERVER_VIEW_LOGIN;
 
-    @Value("${jb4dc.sso.excluded.paths}")
-    private String ssoExcludedPaths;
+    @Value("${jb4dc.sso.server.view.logout}")
+    private String JB4DC_SSO_SERVER_VIEW_LOGOUT;
 
-    @Value("${jb4dc.sso.server.rest.base.path}")
-    private String restBasePath;
+    @Value("${jb4dc.sso.server.excluded}")
+    private String JB4DC_SSO_SERVER_EXCLUDED;
 
-    //@Bean
+    @Bean
     public FilterRegistrationBean xxlSsoFilterRegistration() {
         // xxl-sso, filter init
         FilterRegistrationBean registration = new FilterRegistrationBean();
@@ -49,15 +52,19 @@ public class SsoFilter {
         filter.setCheckSessionSuccess(new ICheckSessionSuccess() {
             @Override
             public void run(ServletRequest request, ServletResponse response, FilterChain chain, JB4DCSession jb4DSession) {
-                System.out.println("重远程获取Session完成,用户:"+jb4DSession.getUserName());
+                try {
+                    System.out.println("重远程获取Session完成,用户:"+ JsonUtility.toObjectString(jb4DSession));
+                } catch (JsonProcessingException e) {
+                    e.printStackTrace();
+                }
             }
         });
         registration.setFilter(filter);
-        registration.addInitParameter(SsoWebFilter.KEY_SSO_SERVER_ADDRESS, ssoServerAddress);
-        registration.addInitParameter(SsoWebFilter.KEY_SSO_LOGIN_PATH,ssoLoginPath);
-        registration.addInitParameter(SsoWebFilter.KEY_SSO_LOGOUT_PATH, ssoLogoutPath);
-        registration.addInitParameter(SsoWebFilter.KEY_SSO_EXCLUDED_PATHS, ssoExcludedPaths);
-        registration.addInitParameter(SsoWebFilter.KEY_SSO_REST_BASE_PATH,restBasePath);
+        registration.addInitParameter(Conf.KEY_JB4DC_SSO_SERVER_ADDRESS, this.JB4DC_SSO_SERVER_ADDRESS);
+        registration.addInitParameter(Conf.KEY_JB4DC_SSO_SERVER_CONTEXT_PATH,this.JB4DC_SSO_SERVER_CONTEXT_PATH);
+        registration.addInitParameter(Conf.KEY_JB4DC_SSO_SERVER_VIEW_LOGIN, this.JB4DC_SSO_SERVER_VIEW_LOGIN);
+        registration.addInitParameter(Conf.KEY_JB4DC_SSO_SERVER_VIEW_LOGOUT, this.JB4DC_SSO_SERVER_VIEW_LOGOUT);
+        registration.addInitParameter(Conf.KEY_JB4DC_SSO_SERVER_EXCLUDED,this.JB4DC_SSO_SERVER_EXCLUDED);
 
         return registration;
     }
