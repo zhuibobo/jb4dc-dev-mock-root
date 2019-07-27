@@ -40,11 +40,11 @@
             },
             data:{
                 acInterface:{
-                    editView:"/HTML/DevDemo/TreeTable/TreeTableList.html",
-                    reloadData:'/PlatFormRest/DevDemo/DevDemoTreeTable/GetListData',
-                    delete:'/PlatFormRest/DevDemo/DevDemoTreeTable/Delete',
-                    statusChange:'/PlatFormRest/DevDemo/DevDemoTreeTable/StatusChange',
-                    move:'/PlatFormRest/DevDemo/DevDemoTreeTable/Move'
+                    editView:"/HTML/DevDemo/TreeTable/TreeTableEdit.html",
+                    reloadData:'/Rest/DevDemo/DevDemoTreeTable/GetListData',
+                    delete:'/Rest/DevDemo/DevDemoTreeTable/Delete',
+                    statusChange:'/Rest/DevDemo/DevDemoTreeTable/StatusChange',
+                    move:'/Rest/DevDemo/DevDemoTreeTable/Move'
                 },
                 treeTableObject:null,
                 treeTableConfig:{
@@ -57,7 +57,7 @@
                     ChildTestField:"ddttChildCount",//判断是否存在子节点的字段，是否>0或者为true，则支持展开
                     Templates:[
                         {
-                            Title:"字典名称",
+                            Title:"名称",
                             FieldName:"ddttName",
                             TitleCellClassName:"TitleCell",
                             Renderer:"Lable",
@@ -65,7 +65,7 @@
                             TitleCellAttrs:{},
                             Width:"40"
                         },{
-                            Title:"字典值",
+                            Title:"值",
                             FieldName:"ddttValue",
                             TitleCellClassName:"TitleCell",
                             Renderer:"Lable",
@@ -83,7 +83,7 @@
                             Width:"40",
                             TextAlign:"center"
                         },{
-                            Title:"字典状态",
+                            Title:"状态",
                             FieldName:"ddttStatus",
                             TitleCellClassName:"TitleCell",
                             Renderer:"Lable",
@@ -107,9 +107,20 @@
                     AjaxUtility.Post(this.acInterface.reloadData, sendData , function (result) {
                         if (result.success) {
                             //debugger;
-                            if(result.data==null){
-                                result.data=new Array();
+                            if(result.data.list==null){
+                                result.data.list=new Array();
                             }
+                            //创建根节点,用于显示
+                            /*result.data.list.push({
+                                ddttId: "0",
+                                ddttParentId:"-1",
+                                ddttKey: "",
+                                ddttValue: "0",
+                                ddttName: "根节点",
+                                ddttDesc: "",
+                                ddttStatus: "启用",
+                                ddttCreatetime:DateUtility.GetCurrentData()
+                            });*/
                             var treeData=JsonUtility.ParseArrayJsonToTreeJson({
                                 KeyField: "ddttId",
                                 RelationField:"ddttParentId",
@@ -123,7 +134,7 @@
                         else{
                             DialogUtility.Alert(window, DialogUtility.DialogAlertId, {}, result.message, null);
                         }
-                    },"json");
+                    },this);
                 },
                 mareSureSelectedTreeTableRow:function (actionText) {
                     var nodeData = this.treeTableObject.GetSelectedRowData();

@@ -41,12 +41,12 @@ public class DemoTreeTableServiceImpl extends BaseServiceImpl<DemoTreeTableEntit
                 sourceEntity.setDdttChildCount(0);
                 sourceEntity.setDdttOrderNum(devDemoTreeTableMapper.nextOrderNum());
                 sourceEntity.setDdttCreatetime(new Date());
-                String parentIdList;
+                String parentIdList=rootId;
                 if(sourceEntity.getDdttId().equals(rootId)){
                     parentIdList=rootParentId;
                     sourceEntity.setDdttParentId(rootParentId);
                 }
-                else
+                else if(!sourceEntity.getDdttParentId().equals("0"))
                 {
                     DemoTreeTableEntity parentEntity=devDemoTreeTableMapper.selectByPrimaryKey(sourceEntity.getDdttParentId());
                     parentIdList=parentEntity.getDdttParentIdlist();

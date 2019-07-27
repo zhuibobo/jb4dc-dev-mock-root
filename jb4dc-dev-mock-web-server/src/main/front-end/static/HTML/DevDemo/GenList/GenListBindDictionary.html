@@ -49,7 +49,7 @@
                 <tr class="ls-table-row">
                     <td>SELECTED：</td>
                     <td>
-                        <i-select clearable v-model="searchCondition.ddglBindDicSelected.value" style="width:100%">
+                        <i-select clearable v-model="searchCondition.ddglBindDicSelected.value" style="width:200px">
                             <i-option v-for="item in dictionaryJson.DevDemoDictionaryGroupBindSelect" :value="item.dictValue" :key="item.dictValue">{{ item.dictText }}</i-option>
                         </i-select>
                     </td>
@@ -245,8 +245,8 @@
                         idField: this.idFieldName,
                         autoSelectedOldRows: false,
                         successFunc: function (result,appVue) {
-                            console.log(result);
-                            debugger;
+                            //console.log(result);
+                            //debugger;
                             if(result.exKVData.dictionaryJson!=undefined&&result.exKVData.dictionaryJson!=null) {
                                 this.dictionaryJson.DevDemoDictionaryGroupBindSelect = result.exKVData.dictionaryJson.DevDemoDictionaryGroupBindSelect;
                                 this.dictionaryJson.DevDemoDictionaryGroupBindRadio = result.exKVData.dictionaryJson.DevDemoDictionaryGroupBindRadio;

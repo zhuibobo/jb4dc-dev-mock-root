@@ -3,8 +3,8 @@
             data: {
                 isSubmitting:false,
                 acInterface:{
-                    getDataUrl:"/PlatFormRest/DevDemo/DevDemoTreeTable/GetDetailData",
-                    saveDataUrl:"/PlatFormRest/DevDemo/DevDemoTreeTable/SaveEdit"
+                    getDataUrl:"/Rest/DevDemo/DevDemoTreeTable/GetDetailData",
+                    saveDataUrl:"/Rest/DevDemo/DevDemoTreeTable/SaveEdit"
                 },
                 recordId:BaseUtility.GetUrlParaValue("recordId"),
                 formEntity: {
@@ -53,7 +53,7 @@
                                     }
                                     DialogUtility.Frame_CloseDialog(window);
                                 });
-                            },"json");
+                            },this);
                         } else {
                             this.$Message.error('Fail!');
                         }
