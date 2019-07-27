@@ -156,7 +156,7 @@
                         else {
                             DialogUtility.Alert(window, DialogUtility.DialogAlertId, {}, result.message, function () {});
                         }
-                    }, "json");
+                    }, this);
                 },
                 treeNodeSelected:function (event, treeId, treeNode) {
                     // 根节点不触发任何事件
@@ -216,7 +216,7 @@
                             else {
                                 DialogUtility.Alert(window, DialogUtility.DialogAlertId, {}, result.message, function () {});
                             }
-                        }, "json");
+                        },this);
                     });
                 },
                 moveGroup:function (type) {
@@ -239,7 +239,7 @@
                             else {
                                 DialogUtility.Alert(window, DialogUtility.DialogAlertId, {}, result.message,null);
                             }
-                        }, "json");
+                        }, this);
                     }
                     else {
                         DialogUtility.Alert(window,DialogUtility.DialogAlertId,{},"请选择需要编辑的节点!",null);
@@ -263,8 +263,21 @@
                     this.selectionRows = selection;
                 },
                 reloadData: function () {
-                    ListPageUtility.IViewTableLoadDataSearch(this.acInterface.reloadListData,this.pageNum,this.pageSize,this.searchCondition,this,this.idFieldName,true,null,false);
+                    //ListPageUtility.IViewTableLoadDataSearch(this.acInterface.reloadListData,this.pageNum,this.pageSize,this.searchCondition,this,this.idFieldName,true,null,false);
                     //this.selectionRows=null;
+                    ListPageUtility.IViewTableBindDataBySearch({
+                        url: this.acInterface.reloadListData,
+                        pageNum: this.pageNum,
+                        pageSize: this.pageSize,
+                        searchCondition: this.searchCondition,
+                        pageAppObj: this,
+                        tableList: this,
+                        idField: this.idFieldName,
+                        autoSelectedOldRows: true,
+                        successFunc: null,
+                        loadDict: false,
+                        custParas: {}
+                    });
                 },
                 add: function () {
                     if(this.treeSelectedNode!=null) {

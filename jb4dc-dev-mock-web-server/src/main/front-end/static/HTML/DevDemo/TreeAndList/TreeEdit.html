@@ -61,8 +61,8 @@
             data: {
                 isSubmitting:false,
                 acInterface:{
-                    getDataUrl:"/PlatFormRest/DevDemo/TreeAndList/DevDemoTLTree/GetDetailData",
-                    saveDataUrl:"/PlatFormRest/DevDemo/TreeAndList/DevDemoTLTree/SaveEdit"
+                    getDataUrl:"/Rest/DevDemo/TreeAndList/DevDemoTLTree/GetDetailData",
+                    saveDataUrl:"/Rest/DevDemo/TreeAndList/DevDemoTLTree/SaveEdit"
                 },
                 recordId:BaseUtility.GetUrlParaValue("recordId"),
                 formEntity: {
@@ -111,7 +111,7 @@
                                     }
                                     DialogUtility.Frame_CloseDialog(window);
                                 });
-                            }, "json");
+                            }, this);
                         } else {
                             this.$Message.error('Fail!');
                         }
