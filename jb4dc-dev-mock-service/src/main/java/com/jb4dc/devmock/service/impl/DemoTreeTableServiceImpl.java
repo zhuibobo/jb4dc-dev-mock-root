@@ -8,6 +8,8 @@ import com.jb4dc.core.base.tools.StringUtility;
 import com.jb4dc.devmock.dao.DemoTreeTableMapper;
 import com.jb4dc.devmock.dbentities.DemoTreeTableEntity;
 import com.jb4dc.devmock.service.IDemoTreeTableService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Date;
 
@@ -17,6 +19,7 @@ import java.util.Date;
  * Date: 2018/7/23
  * To change this template use File | Settings | File Templates.
  */
+@Service
 public class DemoTreeTableServiceImpl extends BaseServiceImpl<DemoTreeTableEntity> implements IDemoTreeTableService {
 
     DemoTreeTableMapper devDemoTreeTableMapper;
@@ -24,6 +27,7 @@ public class DemoTreeTableServiceImpl extends BaseServiceImpl<DemoTreeTableEntit
     private String rootId="0";
     private String rootParentId="-1";
 
+    @Autowired
     public DemoTreeTableServiceImpl(DemoTreeTableMapper _defaultBaseMapper) {
         super(_defaultBaseMapper);
         devDemoTreeTableMapper=_defaultBaseMapper;

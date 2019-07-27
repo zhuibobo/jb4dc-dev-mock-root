@@ -7,6 +7,8 @@ import com.jb4dc.core.base.session.JB4DCSession;
 import com.jb4dc.devmock.dao.DemoTlTreeListMapper;
 import com.jb4dc.devmock.dbentities.DemoTlTreeListEntity;
 import com.jb4dc.devmock.service.IDemoTLTreeListService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Date;
 
@@ -16,10 +18,12 @@ import java.util.Date;
  * Date: 2018/7/24
  * To change this template use File | Settings | File Templates.
  */
+@Service
 public class DemoTLTreeListServiceImpl extends BaseServiceImpl<DemoTlTreeListEntity> implements IDemoTLTreeListService {
 
     DemoTlTreeListMapper devDemoTLTreeListMapper;
 
+    @Autowired
     public DemoTLTreeListServiceImpl(DemoTlTreeListMapper _defaultBaseMapper) {
         super(_defaultBaseMapper);
         devDemoTLTreeListMapper=_defaultBaseMapper;

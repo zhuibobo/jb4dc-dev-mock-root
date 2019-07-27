@@ -6,8 +6,8 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="jb4dc-dev-mock-web-server" />
         <module name="jb4dc-dev-mock-service" />
+        <module name="jb4dc-dev-mock-web-server" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -15,5 +15,11 @@
       <module name="jb4dc-dev-mock-service" target="1.8" />
       <module name="jb4dc-dev-mock-web-server" target="1.8" />
     </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="jb4dc-dev-mock-service" options="-parameters" />
+      <module name="jb4dc-dev-mock-web-server" options="-parameters" />
+    </option>
   </component>
 </project>

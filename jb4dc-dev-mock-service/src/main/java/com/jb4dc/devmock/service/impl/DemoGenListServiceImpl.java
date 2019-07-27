@@ -8,6 +8,8 @@ import com.jb4dc.core.base.tools.StringUtility;
 import com.jb4dc.devmock.dao.DemoGenListMapper;
 import com.jb4dc.devmock.dbentities.DemoGenListEntity;
 import com.jb4dc.devmock.service.IDemoGenListService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * Created with IntelliJ IDEA.
@@ -15,10 +17,13 @@ import com.jb4dc.devmock.service.IDemoGenListService;
  * Date: 2018/7/15
  * To change this template use File | Settings | File Templates.
  */
+
+@Service
 public class DemoGenListServiceImpl extends BaseServiceImpl<DemoGenListEntity> implements IDemoGenListService
 {
     DemoGenListMapper devDemoGenListMapper;
 
+    @Autowired
     public DemoGenListServiceImpl(DemoGenListMapper _defaultBaseMapper) {
         super(_defaultBaseMapper);
         devDemoGenListMapper=_defaultBaseMapper;
