@@ -16,6 +16,11 @@ public class DevDemoTLTreeListRest extends GeneralRest<DemoTlTreeListEntity> {
     IDemoTLTreeListService devDemoTLTreeListService;
 
     @Override
+    public String getModuleName() {
+        return "树与列表-列表";
+    }
+
+    @Override
     protected IBaseService<DemoTlTreeListEntity> getBaseService() {
         return devDemoTLTreeListService;
     }

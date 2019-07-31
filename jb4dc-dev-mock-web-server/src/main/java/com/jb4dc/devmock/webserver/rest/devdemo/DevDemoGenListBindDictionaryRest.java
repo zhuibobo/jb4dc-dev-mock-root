@@ -19,6 +19,11 @@ public class DevDemoGenListBindDictionaryRest extends GeneralRest<DemoGenListEnt
     IDemoGenListService devDemoGenListService;
 
     @Override
+    public String getModuleName() {
+        return "绑定数据字典列表";
+    }
+
+    @Override
     protected IBaseService<DemoGenListEntity> getBaseService() {
         return devDemoGenListService;
     }
