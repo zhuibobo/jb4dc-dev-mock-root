@@ -1,3 +1,20 @@
+jb4dc:
+  system-caption: 开发示例系统
+  system-title: JBuild4DC-开发示例系统
+  warning-operation-code: jb4d82
+  is-debug: true
+  host:
+    operation-system: Window
+  sso:
+    server:
+      name: JB4DC-SSO-WEB-SERVER
+      address: http://localhost:9101
+      context-path: /SSOSystem
+      view:
+        login: /Controller/LoginSSOView
+        logout: /logout
+      excluded:
+
 spring:
   application:
     name: JB4DC-DEV-MOCK-WEB-SERVER
@@ -27,7 +44,6 @@ eureka:
     prefer-ip-address: true
     instanceId: ${spring.cloud.inetutils.preferred-networks}:${server.port}
 
-
 logging:
   level:
     com:
@@ -36,22 +52,6 @@ logging:
           dao: TRACE
         sso:
           client: debug
-
-jb4dc:
-  system-caption: 开发示例系统
-  system-title: JBuild4DC-DEV-MOCK
-  warning-operation-code: jb4d82
-  host:
-    operation-system: Window
-  sso:
-    server:
-      name: JB4DC-SSO-WEB-SERVER
-      address: http://localhost:9101
-      context-path: /SSOSystem
-      view:
-        login: /Controller/LoginSSOView
-        logout: /logout
-      excluded:
 
 feign:
   client:
