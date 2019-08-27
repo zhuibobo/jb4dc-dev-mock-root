@@ -10,6 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
     <properties>
         <jb4dc.dev.mock.version>1.0-SNAPSHOT</jb4dc.dev.mock.version>
+        <jb4dc.builder.version>1.0-SNAPSHOT</jb4dc.builder.version>
     </properties>
     <artifactId>jb4dc-dev-mock-root</artifactId>
     <packaging>pom</packaging>
@@ -31,6 +32,16 @@
             <groupId>jb4dc</groupId>
             <artifactId>jb4dc-sso-client</artifactId>
             <version>${platform.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>jb4dc</groupId>
+            <artifactId>jb4dc-builder-pojo</artifactId>
+            <version>${jb4dc.builder.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>jb4dc</groupId>
+            <artifactId>jb4dc-builder-client</artifactId>
+            <version>${jb4dc.builder.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>

@@ -14,6 +14,11 @@ jb4dc:
         login: /Controller/LoginSSOView
         logout: /logout
       excluded:
+  builder:
+    server:
+      name: JB4DC-BUILDER-WEB-SERVER
+      address: http://localhost:9103
+      context-path: /JB4DCBuilder
 
 spring:
   application:
@@ -51,6 +56,8 @@ logging:
         devmock:
           dao: TRACE
         sso:
+          client: debug
+        builder:
           client: debug
 
 feign:
